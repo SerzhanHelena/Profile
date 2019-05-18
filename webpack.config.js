@@ -15,11 +15,25 @@ module.exports = {
         use: ["babel-loader"]
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
-  },
+				test: /\.(?:sa|sc|c)ss$/,
+				use: [
+					require.resolve('style-loader'),
+					{
+						loader: require.resolve('css-loader'),
+						options: {
+							importLoaders: 1,
+						},
+					},
+					{
+						loader: require.resolve('sass-loader'),
+						options: {
+							importLoaders: 1,
+						},
+					},
+				]
+			}
+		]
+	},
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"

@@ -11,6 +11,7 @@ import {
   Checkbox
 } from "semantic-ui-react";
 import Education from "../Education/Education";
+import "./ModalWindow.scss";
 
 const ModalWindow = props => {
   const students = props.students;
@@ -41,25 +42,45 @@ const ModalWindow = props => {
     portfolio: [{ link: portfolioLink }]
   } = students;
 
+  const {
+    experience: [
+      {
+        name: experName,
+        start: experStart,
+        end: experEnd,
+        position: experPosition,
+        responsibilities: experResponsib
+      }
+    ]
+  } = students;
+  console.log(props);
   return (
-    <Modal open={props.open}>
+    <Modal open={!props.handlePopUp.showModal}>
       <Modal.Header>
-        PROFILE
         <div>
-          {students.name} {students.surName}
+          <h1>PROFILE</h1>
+          <div>
+            <div>
+              {students.name}
+              {students.surname}
+            </div>
+            <div>{students.contacts.email}</div>
+          </div>
+          <div>
+            <Icon name="caret down" size="huge" />
+          </div>
         </div>
-        <div>{students.contacts.email}</div>
-        <Image
+        {/* <Image
           src="https://react.semantic-ui.com/images/wireframe/image.png"
           size="small"
-        />
+        /> */}
       </Modal.Header>
       <Modal.Content image>
         <Modal.Description>
           <Header>Personal and contact information</Header>
           <div>
             {students.name}
-            {students.surName}
+            {students.surname}
           </div>
           <div>
             <Icon size="big" name="mail" />
@@ -108,9 +129,9 @@ const ModalWindow = props => {
           <Header>Professional development, courses</Header>
           <div>
             <select disabled>
-              <option>{profDevName}</option>
+              <option>{profDevEnd}</option>
             </select>
-            <Input value={profDevEnd} disabled />
+            <Input value={profDevName} disabled />
           </div>
           <div>
             <span>Specialization</span>
@@ -125,7 +146,8 @@ const ModalWindow = props => {
             <Input disabled value={certificateName} />
           </div>
           <div>
-            <span>Certificate title</span>{" "}
+            <span>Certificate title</span>
+            <Input value={certificateTitle} disabled />
             <p>
               google.doc
               <Icon name="remove" size="large" />
@@ -144,7 +166,26 @@ const ModalWindow = props => {
           </div>
           <Divider />
           <Header>Work experience</Header>
-
+          <select>
+            <option>{experStart.month}</option>
+          </select>
+          <select>
+            <option>{experStart.years}</option>
+          </select>
+          <select>
+            <option>{experEnd.month}</option>
+          </select>
+          <select>
+            <option>{experEnd.years}</option>
+          </select>
+          <Input disabled value={experName} />
+          <div>
+            Position <Input value={experPosition} />
+          </div>
+          <div>
+            Responsibilities, tasks, activities
+            <Input disabled value={experResponsib} />
+          </div>
           <Divider />
           <Header>Portfolio</Header>
           <div>

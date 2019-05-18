@@ -15,6 +15,7 @@ const Education = props => {
         <select>
           <option>{start}</option>
         </select>
+        -
         <select>
           <option>{end}</option>
         </select>

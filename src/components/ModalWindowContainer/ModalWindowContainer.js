@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ModalWindow from '../Modal/ModalWindow';
+import {isOpen} from '../../actions/openModal';
 
 const ModalWindowContainer = (props) => {
 	return (
@@ -10,8 +11,13 @@ const ModalWindowContainer = (props) => {
 
 const mapStateToProps = state => {
 	return {
-		students: state.students[0]
+		students: state.students[0],
+		handlePopUp: state.handlePopUp
 	}
 }
 
-export default connect(mapStateToProps, null)(ModalWindowContainer);
+const mapDispatchToProps = {
+	isOpen
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalWindowContainer);
